@@ -39,9 +39,9 @@ The following is a system architecture diagram showing the ROS nodes and topics 
  * KD-Tree algorithm was utilized to search for the nearest waypoint with O(logn) time complexity.
 
  #### tl_classifier.py:
-  * Utilize a good real-time object detection model [MobileNets](https://github.com/tensorflow/models/blob/master/research/slim/nets/mobilenet_v1.md) based on Tensorflow.
+  * Utilize a good real-time object detection model [MobileNets](https://github.com/tensorflow/models/blob/master/research/slim/nets/mobilenet_v1.md) based on Tensorflow, as suggested in [CarND-Object-Detection-Lab](https://github.com/udacity/CarND-Object-Detection-Lab).
   * Provide an encapsulated class with major traffic light image identification methods, including import_graph_model, draw_bounding_box, and get_classification, etc.
-  * Detect the traffic light object, then transformed the image from RGB to HSV to determine the particular light type, i.e., red, green, or yellow.
+  * Detect the traffic light object, then transform the image from RGB to HSV to determine the particular light type, i.e., red, green, or yellow.
   
 ---
 * ### Waypoint Updater Node (`path_to_project_repo/ros/src/waypoint_updater/`)
@@ -56,7 +56,7 @@ The following is a system architecture diagram showing the ROS nodes and topics 
 
   The following major functions have been implemented as requested:
  * Subscribe to four message topics: "/current_pose", "/base_waypoints", "/traffic_waypoint", and "/obstacle_waypoint", and hook up corresponding callback methods.
- * Get the closest waypoint in self.loop(), and publish it as messages to a new topic: "/final_waypoints"
+ * Get the closest waypoint in self.loop(), and publish it as messages to a new topic: "/final_waypoints".
  * KD-Tree algorithm was utilized to search for the nearest waypoint with O(logn) time complexity.
  * Vector products were used to help the vehicle detect if the nearest waypoint is behind the vehicle.
  * When a red traffic light is detected, decelerate waypoints waypoint are generated based on smoothing logics with a squire root function.
@@ -81,7 +81,7 @@ The following is a system architecture diagram showing the ROS nodes and topics 
 
  #### twist_controller.py:
  
- * Utilize YawController for steering angle, KPI control for throttle control, and Low pass filters for vehicle speed, to provide smooth control to follow target waypoints
+ * Utilize YawController for steering angle, KPI control for throttle control, and Low pass filters for vehicle speed, to provide smooth control to follow target waypoints.
  * The steering angle is generated based on the position next target waypoint for each loop, with vehicle kinematics and the turn curvature calculations.
  * A brake setting 400Nm is used to fully stop the vehicle. For deceleration, a dynamically approach based on vehicle current speed and vehicle mass is used.
 
